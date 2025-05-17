@@ -29,22 +29,21 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     : [
         { label: "Dashboard", path: "/student" },
         { label: "Practice", path: "/student/practice" },
-        { label: "Questions", path: "/student/questions" },
       ];
 
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
-      <aside className="w-64 bg-blue-200 text-white p-4">
-        <h2 className="text-2xl text-blue-700 font-bold mb-6">Dashboard</h2>
+      <aside className="w-64 bg-gray-200 text-white p-4">
+        <h2 className="text-2xl  text-blue-700 font-bold mb-6">Dashboard</h2>
         <nav>
           <ul className="space-y-2">
             {navItems.map((item) => (
               <li key={item.path}>
                 <Link
                   href={item.path}
-                  className={`block p-2 rounded ${
-                    pathname === item.path ? "bg-blue-500" : "hover:bg-gray-700"
+                  className={`block p-2 text-black rounded ${
+                    pathname === item.path ? "bg-blue-500" : "hover:bg-gray-300"
                   }`}
                 >
                   {item.label}
@@ -58,7 +57,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Top Bar */}
-        <header className="bg-blue-600 text-white p-4 flex justify-between items-center">
+        <header className="bg-blue-400 text-white p-4 flex justify-between items-center">
           <h1 className="text-xl font-semibold">
             {isAdmin ? "Admin Panel" : "Study Platform"}
           </h1>

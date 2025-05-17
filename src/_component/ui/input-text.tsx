@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Spinner } from "./app-button";
 
 const AppInputText = ({
@@ -25,6 +26,10 @@ const AppInputText = ({
   isLoadingContent?: boolean;
   onBlur?: () => void;
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const isPasswordField = type === "password";
+
   return (
     <div className="space-y-1 w-full">
       <label
@@ -40,7 +45,7 @@ const AppInputText = ({
           </div>
         )}
         <input
-          type={type}
+          type={isPasswordField && showPassword ? "text" : type}
           id={id}
           name={name}
           placeholder={placeholder}
@@ -50,42 +55,16 @@ const AppInputText = ({
           disabled={disabled}
           onBlur={onBlur}
         />
+        {isPasswordField && (
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute inset-y-0 right-2 flex items-center text-gray-500 text-xs"
+          >
+            {showPassword ? "Hide" : "Show"}
+          </button>
+        )}
       </div>
-    </div>
-  );
-};
-
-export const AppInputTextArea = ({
-  label,
-  id,
-  placeholder,
-  requiredField = false,
-  onChange,
-  value,
-}: {
-  label?: string;
-  id: string;
-  placeholder: string;
-  requiredField?: boolean;
-  type?: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  value: string;
-}) => {
-  return (
-    <div className="space-y-1 w-full">
-      <label
-        htmlFor={id}
-        className={`text-xs font-semibold text-gray-700 ${requiredField ? 'after:content-["*"] after:text-red-500 after:ml-1 after:font-bold' : ""}`}
-      >
-        {label}
-      </label>
-      <textarea
-        id={id}
-        placeholder={placeholder}
-        className="w-full border border-gray-300 rounded-md p-2 placeholder:text-xs text-xs outline-none focus:border-primary transition-all duration-300 resize-none"
-        onChange={onChange}
-        value={value}
-      />
     </div>
   );
 };

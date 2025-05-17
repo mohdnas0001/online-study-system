@@ -57,7 +57,6 @@ export default function AddQuestion() {
     },
     onSuccess: () => {
       toast.success("Question added!");
-      router.push("/questions");
     },
     onError: (error: Error) => {
       console.log("Mutation error:", error.message);

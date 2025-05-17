@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SessionProvider } from "next-auth/react";
 import { ReactNode, useState } from "react";
-import "react-toastify/dist/ReactToastify.css";
+import { Toaster } from "react-hot-toast";
 
 export default function Providers({ children }: { children: ReactNode }) {
   const [queryClient] = useState(() => new QueryClient());
@@ -12,7 +12,8 @@ export default function Providers({ children }: { children: ReactNode }) {
   return (
     <SessionProvider > 
     <QueryClientProvider client={queryClient}>
-      {children}
+        {children}
+        <Toaster position="top-right" toastOptions={{ duration: 4000 }} />
       <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </SessionProvider>

@@ -126,6 +126,7 @@ export default {
         heading: ["var(--font-roboto)", "sans-serif"],
       },
       screens: {
+        "md" : "768px",
         "3xl": "2560px",
       },
       keyframes: {
